@@ -1,0 +1,12 @@
+{
+  "name": "unittesting_with_mockapis",
+  "version": "1.0.0",
+  "description": "Created with StackBlitz ⚡️",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/userService.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
