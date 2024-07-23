@@ -1,6 +1,4 @@
-const fetchUserFromApi = require('./api');
-
-const fetchUser = (userId) => {
+const fetchUser = (fetchUserFromApi) => (userId) => {
   return fetchUserFromApi(userId)
     .then(user => ({ id: user.id, name: user.name }))
     .catch(error => {

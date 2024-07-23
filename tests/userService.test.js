@@ -1,28 +1,25 @@
-const fetchUser = require('../src/userService');
-const fetchUserFromApi = require('../src/api');
+const createFetchUser = require("../src/userService");
 
 // Manual mock for the API call
-const originalFetchUserFromApi = fetchUserFromApi;
-fetchUserFromApi = (userId) => {
-  return Promise.resolve({ id: userId, name: 'Mock User' });
+const fetchUserFromMockApi = (userId) => {
+  return Promise.resolve({ id: userId, name: "Mock User" });
 };
 
-// Basic test function
+// Inject the mock function into the fetchUser function
+const fetchUser = createFetchUser(fetchUserFromMockApi);
+
+// Test function
 const runTests = () => {
   fetchUser(1)
-    .then(user => {
-      if (user.id === 1 && user.name === 'Mock User') {
-        console.log('Test passed');
+    .then((user) => {
+      if (user.id === 1 && user.name === "Mock User") {
+        console.log("Test passed");
       } else {
-        console.log('Test failed');
+        console.log("Test failed");
       }
     })
-    .catch(error => {
-      console.error('Test failed with error:', error);
-    })
-    .finally(() => {
-      // Restore the original function
-      fetchUserFromApi = originalFetchUserFromApi;
+    .catch((error) => {
+      console.error("Test failed with error:", error);
     });
 };
 
